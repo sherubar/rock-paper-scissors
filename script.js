@@ -12,3 +12,23 @@ function getPlayerChoice(){
     return playerChoice
 }
 
+function playRound(playerSelection, computerSelection){
+    if (playerSelection === computerSelection){
+        return "Draw!!"
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")
+    ){
+        return "You win!!"
+    }
+    else {
+        return "Computer wins! :("
+    }
+}
+
+getComputerChoice()
+getPlayerChoice()
+result = playRound(playerChoice, computerChoice)
+console.log(`Player choice: ${playerChoice} | Computer choice: ${computerChoice}`)
+console.log(result)
