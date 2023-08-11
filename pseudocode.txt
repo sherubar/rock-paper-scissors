@@ -1,0 +1,6 @@
+Declare a variable called computerChoice of string type with the initial value of undefined
+Declare a variable called playerChoice of string type with the initial value of undefined
+Declare a function called getComputerChoice which will return the value chosen by the computer and store the value in computerChoice
+Declare a function called getPlayerChoice which will return a value chosen by the player and store the value in playerChoice
+Declare a function called playRound which takes the parameters playerSelection and computerSelection and checks them against each other in order to return a string that declares the winner
+Declare a function called game which will execute 5 rounds
