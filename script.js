@@ -27,8 +27,14 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-getComputerChoice()
-getPlayerChoice()
-result = playRound(playerChoice, computerChoice)
-console.log(`Player choice: ${playerChoice} | Computer choice: ${computerChoice}`)
-console.log(result)
+function game(){
+    for (let i = 0; i < 5; i++){
+        getComputerChoice()
+        getPlayerChoice()
+        result = playRound(playerChoice, computerChoice)
+        console.log(`Player choice: ${playerChoice} | Computer choice: ${computerChoice}`)
+        console.log(result)
+    }
+}
+
+game()
