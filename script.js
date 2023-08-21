@@ -1,5 +1,16 @@
 let computerChoice;
 let playerChoice;
+let playerWins = 0
+let computerWins = 0
+let result;
+const btns = document.querySelectorAll('button')
+const roundResult = document.querySelector('#roundResult')
+const finalResult = document.querySelector('#finalResult')
+const playerWinCounter = document.querySelector('#playerWins')
+const computerWinCounter = document.querySelector('#computerWins')
+playerWinCounter.innerHTML = `Player round wins: ${playerWins}`
+computerWinCounter.innerHTML = `Computer Round wins: ${computerWins}`
+roundResult.innerHTML = `Player choice: | Computer choice: | result: `
 
 function getComputerChoice(){
     const CHOICES = ['rock', 'paper', 'scissors'];
@@ -7,34 +18,52 @@ function getComputerChoice(){
     return computerChoice
 };
 
-function getPlayerChoice(){
-    playerChoice = (prompt("Rock, paper, scissors?: ")).toLowerCase()
-    return playerChoice
-}
-
 function playRound(playerSelection, computerSelection){
+    playerSelection = playerChoice;
+    computerSelection = computerChoice;
     if (playerSelection === computerSelection){
-        return "Draw!!"
+        result = roundResult.innerHTML = "Draw!!"
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper")
     ){
-        return "You win!!"
+        result = roundResult.innerHTML = "Player wins round!"
+        playerWins++
+        if (playerWins === 5){
+            finalResult.innerHTML = "Player won the game!"
+            playerWins = 0
+            computerWins = 0
+        }
+        if ((playerWins || computerWins) !== 0){
+            finalResult.innerHTML = ""
+        }
     }
     else {
-        return "Computer wins! :("
+        result = roundResult.innerHTML = "Computer wins round! :("
+        computerWins++
+        if (computerWins === 5){
+            finalResult.innerHTML = "Computer wins the game!"
+            playerWins = 0
+            computerWins = 0
+        }
+        if ((playerWins || computerWins) !== 0){
+            finalResult.innerHTML = ""
+        }
     }
+    return [
+        roundResult.innerHTML = `Player choice: ${playerChoice} | Computer choice: ${computerChoice} | result: ${result}`
+        ,playerWinCounter.innerHTML = `Player round wins: ${playerWins}`
+        ,computerWinCounter.innerHTML = `Player round wins: ${computerWins}`
+    ]
 }
 
-function game(){
-    for (let i = 0; i < 5; i++){
-        getComputerChoice()
-        getPlayerChoice()
-        result = playRound(playerChoice, computerChoice)
-        console.log(`Player choice: ${playerChoice} | Computer choice: ${computerChoice}`)
-        console.log(result)
-    }
-}
+btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        playerChoice = `${btn.id}`
+        return playerChoice
+    })
+    btn.addEventListener('click', getComputerChoice)
+    btn.addEventListener('click', playRound)
+});
 
-game()
