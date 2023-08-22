@@ -66,4 +66,3 @@ btns.forEach(btn => {
     btn.addEventListener('click', getComputerChoice)
     btn.addEventListener('click', playRound)
 });
-
